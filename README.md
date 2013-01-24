@@ -8,15 +8,15 @@ close as possible and it should be easy to adapt.
 
 * 0.1.0 (2013-01-25)
 
-	* Initiate commit.
+	* Initial commit.
 
 ## Requirements
 
-PHPPremailer requires PHP 5.3 for the namespace.
+* PHP 5.3
 
-[Client URL Library](http://php.net/manual/en/book.curl.php) of PHP is also needed for sending HTTP requests.
+* [Client URL Library](http://php.net/manual/en/book.curl.php)
 
-## Example
+## Examples
 
 ### Use a URL as the source
 
