@@ -164,8 +164,8 @@ class PremailerTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals('Created', $response->get_message());
 		$this->assertEquals('0.1', $response->get_version());
 		
-		$this->assertStringEqualsFile(self::URL_HTML_FILE, $response->get_html(PremailerResponse::SSL_NOT_VERIFY));
-		$this->assertStringEqualsFile(self::URL_TEXT_FILE, $response->get_text(PremailerResponse::SSL_NOT_VERIFY));
+		$this->assertStringEqualsFile(self::URL_HTML_FILE, $response->get_html());
+		$this->assertStringEqualsFile(self::URL_TEXT_FILE, $response->get_text());
 		
 		$options = $response->get_options();
 		

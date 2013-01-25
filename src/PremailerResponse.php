@@ -22,7 +22,8 @@ class PremailerResponse {
 	const STATUS_MISSING_SOURCE_FILE = 400;
 	const STATUS_ERROR               = 500;
 	const SSL_VERIFY                 = 'verify';
-	const SSL_NOT_VERIFY             = 'not_verify';
+	const SSL_NOT_VERIFY             = 'not verify';
+	const CACERT_FILE                = '/../cacert.pem';
 	
 	/**
 	 * Response code
@@ -157,8 +158,11 @@ class PremailerResponse {
 		curl_setopt_array($curl_resource, array(
 			CURLOPT_URL            => $url,
 			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_SSL_VERIFYPEER => $ssl_mode == self::SSL_VERIFY,
+			CURLOPT_SSL_VERIFYPEER => $ssl_mode === self::SSL_VERIFY,
 		));
+		
+		if($ssl_mode === self::SSL_VERIFY && file_exists(__DIR__ . self::CACERT_FILE))
+			curl_setopt($curl_resource, CURLOPT_CAINFO, __DIR__ . self::CACERT_FILE);
 
 		//execute post
 		$response_text = curl_exec($curl_resource);

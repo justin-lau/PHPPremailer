@@ -6,6 +6,10 @@ close as possible and it should be easy to adapt.
 
 ## Change Log
 
+* 0.1.1 (2013-01-26)
+
+	* Added CA Cert Suppport
+
 * 0.1.0 (2013-01-25)
 
 	* Initial commit.
@@ -47,6 +51,36 @@ $client = new PremailerClient();
 
 $response = $client->send(); // generates PHPPremailer\PremailerException !
 ```
+
+## cURL SSL Connection
+
+Although the Premailer API do not support secure connection, both the processed HTML and plain text
+are stored on Amazon S3 storage service that offer HTTPS.
+
+If you encountered an PremailerException with the following message, it means your cURL library
+wasn't able to find a valid CA Certificate to verify the HTTPS connection:
+
+```
+cURL Error[60]: SSL certificate problem, verify that the CA cert is OK.
+```
+
+According to [cURL's documentation](http://curl.haxx.se/docs/sslcerts.html), you can either disabled
+the verification, or let cURL be aware of a CA Certificate that can verify the connection.
+PHPPremailer is flexible and let you do either.
+
+Disabling the verification makes cURL vulnerable to [Man-in-the-middle](http://en.wikipedia.org/wiki/Man-in-the-middle_attack)
+attacks, but for trivial or testing purpose you can do so:
+
+```php
+// pass a class constant
+$html_result = $response->get_html(PremailerClient::SSL_NOT_VERIFY);
+// or
+$html_result = $response->get_html('not verify');
+```
+
+To use a CA Certificate Bundle, just place the pem file at the root folder of the library and name
+it cacert.pem. The file can be created in many way, and the easiest one among them is to
+[download](http://curl.haxx.se/docs/caextract.html) one from cURL.
 
 ## Testing
 
