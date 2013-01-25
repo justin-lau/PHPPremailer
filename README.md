@@ -2,18 +2,17 @@
 
 PHPPremailer is a simple object oriented library that wraps up the API calls to and respond from
 the [Premailer API 0.1](http://premailer.dialect.ca/api). It follows the original API naming as
-close as possible and it should be easy to adapt.
+closely as possible and it should be easy to adapt.
 
 ## Change Log
 
-* 0.1.1 (2013-01-25)
-
-	* Added CA Cert Suppport
-
+0.1.1 (2013-01-25)
 	
-* 0.1.0 (2013-01-25)
+ - Added CA Cert Suppport
 
-	* Initial commit.
+0.1.0 (2013-01-25)
+
+ - Initial commit.
 
 ## Requirements
 
@@ -61,8 +60,8 @@ $response = $client->send(); // generates PHPPremailer\PremailerException !
 Although the Premailer API do not support secure connection, both the processed HTML and plain text
 are stored on Amazon S3 storage service that offer HTTPS.
 
-If you encountered an PremailerException with the following message, it means your cURL library
-wasn't able to find a valid CA Certificate to verify the HTTPS connection:
+If you encountered an `PHPPremailer\PremailerException` with the following message, it means your
+cURL library wasn't able to find a valid CA Certificate to verify the HTTPS connection:
 
 ```
 cURL Error[60]: SSL certificate problem, verify that the CA cert is OK.
@@ -83,7 +82,7 @@ $html_result = $response->get_html('not verify');
 ```
 
 To use a CA Certificate Bundle, just place the pem file at the root folder of the library and name
-it cacert.pem. The file can be created in many way, and the easiest one among them is to
+it `cacert.pem`. The file can be created in many way, and the easiest one among them is to
 [download](http://curl.haxx.se/docs/caextract.html) one from cURL.
 
 ## Testing
