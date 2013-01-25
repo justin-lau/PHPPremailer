@@ -6,10 +6,11 @@ close as possible and it should be easy to adapt.
 
 ## Change Log
 
-* 0.1.1 (2013-01-26)
+* 0.1.1 (2013-01-25)
 
 	* Added CA Cert Suppport
 
+	
 * 0.1.0 (2013-01-25)
 
 	* Initial commit.
@@ -29,8 +30,11 @@ close as possible and it should be easy to adapt.
 
 use PHPPremailer\PremailerClient;
 
-// pass a class constant or simply 'url' to define source type
+// pass a class constant to define source type
 $client = new PremailerClient(PremailerClient::SOURCE_TYPE_URL, 'http://dialect.ca/premailer-tests/base.html');
+
+// or use a literal string
+$client = new PremailerClient('url', 'http://dialect.ca/premailer-tests/base.html');
 
 // fluent method call
 $response = $client->send()->get_response();
